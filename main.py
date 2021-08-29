@@ -29,19 +29,25 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author==client.user:
+    if  message.author==client.user:
         return
 
     if message.content.startswith("$hello"):
-        await message.channel.send("Hello!")
+          await message.channel.send("Hello!")
 
-    if message.content.startswith("$timer"):
-        await message.channel.send("Please set timer '$set.timer (your time here in seconds)'")
+    if message.content=="$timer":
+          await message.channel.send("Please set timer '$timer.min for min, $timer.sec    for seconds ")
 
-    if message.content.startswith("$set.timer"):
-        süre = int(message.content[10:])
-        print(countdown(süre))
-        await message.channel.send("Süre doldu hadi geçmiş olsun")
+    if message.content.startswith("$timer.min"):
+          süre = int(message.content[10:]) * 60
+          print(countdown(süre))
+          await message.channel.send("Süre doldu hadi geçmiş olsun")
+
+    if message.content.startswith("$timer.sec"):
+          süre = int(message.content[10:]) 
+          print(countdown(süre))
+          await message.channel.send("Süre doldu hadi geçmiş olsun")    
+
 
 
     
